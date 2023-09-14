@@ -1,10 +1,11 @@
 struct Game {
-    tiles: Vec<Vec<Tile>>,
+    tiles: Vec<Tile>,
     units: Vec<Unit>,
     ships: Vec<Ship>,
     turn: i32,
     phase: Phase,
     // ... other properties
+    
 }
 
 impl Game {
@@ -28,3 +29,4 @@ fn main() {
         game.next_turn();
     }
 }
+
