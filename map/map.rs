@@ -1,5 +1,3 @@
-[dependencies]
-piston_window = "0.120.0"
 
 extern crate piston_window;
 
