@@ -1,0 +1,11 @@
+/Users/jhurley/taiwan/taiwan/target/debug/deps/gfx_device_gl-8adcd020eeb7a3d1.rmeta: /Users/jhurley/.cargo/registry/src/index.crates.io-6f17d22bba15001f/gfx_device_gl-0.16.2/src/lib.rs /Users/jhurley/.cargo/registry/src/index.crates.io-6f17d22bba15001f/gfx_device_gl-0.16.2/src/command.rs /Users/jhurley/.cargo/registry/src/index.crates.io-6f17d22bba15001f/gfx_device_gl-0.16.2/src/factory.rs /Users/jhurley/.cargo/registry/src/index.crates.io-6f17d22bba15001f/gfx_device_gl-0.16.2/src/info.rs /Users/jhurley/.cargo/registry/src/index.crates.io-6f17d22bba15001f/gfx_device_gl-0.16.2/src/shade.rs /Users/jhurley/.cargo/registry/src/index.crates.io-6f17d22bba15001f/gfx_device_gl-0.16.2/src/state.rs /Users/jhurley/.cargo/registry/src/index.crates.io-6f17d22bba15001f/gfx_device_gl-0.16.2/src/tex.rs
+
+/Users/jhurley/taiwan/taiwan/target/debug/deps/gfx_device_gl-8adcd020eeb7a3d1.d: /Users/jhurley/.cargo/registry/src/index.crates.io-6f17d22bba15001f/gfx_device_gl-0.16.2/src/lib.rs /Users/jhurley/.cargo/registry/src/index.crates.io-6f17d22bba15001f/gfx_device_gl-0.16.2/src/command.rs /Users/jhurley/.cargo/registry/src/index.crates.io-6f17d22bba15001f/gfx_device_gl-0.16.2/src/factory.rs /Users/jhurley/.cargo/registry/src/index.crates.io-6f17d22bba15001f/gfx_device_gl-0.16.2/src/info.rs /Users/jhurley/.cargo/registry/src/index.crates.io-6f17d22bba15001f/gfx_device_gl-0.16.2/src/shade.rs /Users/jhurley/.cargo/registry/src/index.crates.io-6f17d22bba15001f/gfx_device_gl-0.16.2/src/state.rs /Users/jhurley/.cargo/registry/src/index.crates.io-6f17d22bba15001f/gfx_device_gl-0.16.2/src/tex.rs
+
+/Users/jhurley/.cargo/registry/src/index.crates.io-6f17d22bba15001f/gfx_device_gl-0.16.2/src/lib.rs:
+/Users/jhurley/.cargo/registry/src/index.crates.io-6f17d22bba15001f/gfx_device_gl-0.16.2/src/command.rs:
+/Users/jhurley/.cargo/registry/src/index.crates.io-6f17d22bba15001f/gfx_device_gl-0.16.2/src/factory.rs:
+/Users/jhurley/.cargo/registry/src/index.crates.io-6f17d22bba15001f/gfx_device_gl-0.16.2/src/info.rs:
+/Users/jhurley/.cargo/registry/src/index.crates.io-6f17d22bba15001f/gfx_device_gl-0.16.2/src/shade.rs:
+/Users/jhurley/.cargo/registry/src/index.crates.io-6f17d22bba15001f/gfx_device_gl-0.16.2/src/state.rs:
+/Users/jhurley/.cargo/registry/src/index.crates.io-6f17d22bba15001f/gfx_device_gl-0.16.2/src/tex.rs:

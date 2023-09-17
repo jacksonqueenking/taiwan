@@ -1,0 +1,6 @@
+{
+    "rust-analyzer.linkedProjects": [
+        "./taiwan/Cargo.toml",
+        "./taiwan/Cargo.toml"
+    ]
+}

@@ -20,7 +20,7 @@ impl Game {
     // ... other methods
 }
 
-fn main() {
+fn play() {
     let mut game = Game::new();
 
     while !game.is_over() {
