@@ -1,22 +1,5 @@
 
-
-enum TerrainType {
-    Mountain,
-    Hill,
-    Forest,
-    // ... other terrains
-}
-
-struct Tile {
-    terrain: TerrainType,
-    visibility_multiplier: f32,
-    concealment_multiplier: f32,
-    // ... other properties
-}
-
-//land units
-
-enum LandUnitType {
+pub enum LandUnitType {
     Infantry,
     Armor,
     Artillery,
@@ -24,13 +7,13 @@ enum LandUnitType {
     // ... add other types as needed
 }
 
-struct TerrainBonus {
+pub struct TerrainBonus {
     offensive_multiplier: f32,
     defensive_multiplier: f32,
     speed_multiplier: f32,
 }
 
-struct LandUnit {
+pub struct LandUnit {
     unit_type: UnitType,
     strength: i32,  // Represents the number of personnel or "health" of the unit.
     morale: f32,    // A value between 0 and 1, where 1 is high morale.
@@ -46,13 +29,13 @@ struct LandUnit {
 }
 
 impl LandUnit {
-    fn attack(&self, target: &LandUnit) -> i32 {
+    pub fn attack(&self, target: &LandUnit) -> i32 {
         // Calculate damage based on unit type, terrain, morale, etc.
         // Return the damage value.
         0  // Placeholder
     }
 
-    fn defend(&mut self, damage: i32) {
+    pub fn defend(&mut self, damage: i32) {
         // Reduce strength based on damage and other factors.
         // Modify morale based on casualties.
     }
@@ -61,11 +44,11 @@ impl LandUnit {
 }
 
 //sea units
-struct SAG { //SAG = Suface Action Group 
+pub struct SAG { //SAG = Suface Action Group 
     ships: vec<Ship>,
 }
 
-struct Ship {
+pub struct Ship {
     name: String,
     ordnance: Vec<Ordnance>,  // A list of ordnance the ship can fire
     lift: f64,  // Lift capacity in tonnes
@@ -76,61 +59,61 @@ struct Ship {
     // ... other properties
 }
 
-struct AircraftCarrier {
+pub struct AircraftCarrier {
     base: Ship,
     aircraft: Vec<Airplane>,  // List of airplanes on the carrier
     // ... other attributes specific to aircraft carriers ...
 }
 
-struct Submarine {
+pub struct Submarine {
     base: Ship,
     nuclear_powered: bool,  // true for nuclear submarines, false for diesel
     // ... other attributes specific to submarines ...
 }
 
-struct Cruiser {
+pub struct Cruiser {
     base: Ship,
     // ... attributes specific to cruisers ...
 }
 
-struct Destroyer {
+pub struct Destroyer {
     base: Ship,
     // ... attributes specific to destroyers ...
 }
 
-struct CivilianRoRoShip {
+pub struct CivilianRoRoShip {
     base: Ship,
     // ... attributes specific to civilian roll-on-roll-off ships ...
 }
 
-struct AmphibiousLandingShip {
+pub struct AmphibiousLandingShip {
     base: Ship,
     // ... attributes specific to amphibious landing ships ...
 }
 
 //air units
 
-struct AirUnit {
+pub struct AirUnit {
     name: String,
     strength: usize,  // Number of planes or other entities in the unit
     missile_capabilities: Vec<Missile>,
     // ... other common attributes ...
 }
 
-enum FighterGeneration {
+pub enum FighterGeneration {
     Fourth,
     FourthPointFive,
     Fifth,
 }
 
-struct FighterSquadron {
+pub struct FighterSquadron {
     base: AirUnit,
     generation: FighterGeneration,
     // ... other attributes specific to fighter squadrons ...
 }
 
 impl FighterSquadron {
-    fn new(generation: FighterGeneration) -> Self {
+    pub fn new(generation: FighterGeneration) -> Self {
         let (name, strength) = match generation {
             FighterGeneration::Fourth => ("4th Generation Fighter Squadron".to_string(), 24),
             FighterGeneration::FourthPointFive => ("4.5th Generation Fighter Squadron".to_string(), 24),
@@ -144,19 +127,19 @@ impl FighterSquadron {
     }
 }
 
-enum BomberType {
+pub enum BomberType {
     Stealth,
     NonStealth,
 }
 
-struct BomberSquadron {
+pub struct BomberSquadron {
     base: AirUnit,
     bomber_type: BomberType,
     // ... other attributes specific to bomber squadrons ...
 }
 
 impl BomberSquadron {
-    fn new(bomber_type: BomberType) -> Self {
+    pub fn new(bomber_type: BomberType) -> Self {
         let (name, strength) = match bomber_type {
             BomberType::Stealth => ("Stealth Bomber Squadron".to_string(), 12),
             BomberType::NonStealth => ("Non-Stealth Bomber Squadron".to_string(), 12),
@@ -171,14 +154,14 @@ impl BomberSquadron {
 
 // Missiles
 
-enum MissileTarget {
+pub enum MissileTarget {
     Air,
     Ship,
     Land,
     Multiple(Vec<MissileTarget>),  // For missiles that can strike multiple types of targets
 }
 
-struct Missile {
+pub struct Missile {
     name: String,
     range: f64,  // Range in kilometers
     weight: f64,  // Weight in tonnes
@@ -186,7 +169,7 @@ struct Missile {
     // ... other attributes ...
 }
 
-trait Movable {
+pub trait Movable {
     fn move_to(&mut self, x: f64, y: f64);
     fn current_position(&self) -> (f64, f64);
     // ... other movement-related methods ...
@@ -205,27 +188,27 @@ impl Movable for LandUnit {
     // ... other method implementations ...
 }
 
-trait Heavy {
+pub trait Heavy {
     fn weight(&self);
 }
 
-trait Damageable {
+pub trait Damageable {
     fn damage(&self, damage: i32);
 }
 
-trait Attritable {
+pub trait Attritable {
     fn attrite(&self, attrition: i32);
 }
 
-trait Bombable {
+pub trait Bombable {
+    
+}
+
+pub trait Flyable {
 
 }
 
-trait Flyable {
-
-}
-
-trait Sailable {
+pub trait Sailable {
 
 }
 

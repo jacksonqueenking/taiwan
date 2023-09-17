@@ -144,12 +144,12 @@ pub enum HubType {
     //Other Hub types
 }
 
-struct Arsenal {
+pub struct Arsenal {
     sam_missiles: i32
     //Numbers of all the different types of missiles, supplies, and ammo.
 }
 
-struct Hub {
+pub struct Hub {
     name: String,
     x: f64,
     y: f64,
@@ -159,20 +159,37 @@ struct Hub {
 
 //Cities
 
-struct City {
+pub struct City {
     base: Hub,
     significance: f64,  // A value between 0.0 (least significant) to 1.0 (most significant)
     population: i32,
     //Other City attributes
 }
 
-let cities = vec![
-    City { base.x: 100.0, base.y: 100.0, base.name: "Tainan", significance: 0.5, population: 1900000},
-    City { base.x: 540.0, base.y: 100.0, base.name: "Kaohsiung", significance: 0.7, population: 2700000},
-    City { base.x: 320.0, base.y: 380.0, base.name: "Taipei", significance: 1.0, population: 2600000 },
-    // ... add more cities as needed
-];
+type Cities = Vec<City>;
 
+impl Default for Cities {
+    fn default() -> Self {
+        vec![
+            City { 
+                base: Hub { name: "Tainan".to_string(), x: 100.0, y: 100.0, storage: 100000 }, 
+                significance: 0.5, 
+                population: 1900000 
+            },
+            City { 
+                base: Hub { name: "Kaohsiung".to_string(),x: 540.0, y: 100.0, storage: 100000 }, 
+                significance: 0.7, 
+                population: 2700000 
+            },
+            City { 
+                base: Hub { name: "Taipei".to_string(), x: 320.0, y: 380.0, storage: 100000 }, 
+                significance: 1.0, 
+                population: 2600000 
+            },
+        // ... add more cities as needed
+    ];
+    }
+}
 
 impl Drawable for City {
     fn draw(&self, c: Context, g: &mut G2d) {
@@ -196,7 +213,7 @@ fn draw_cities(cities: &[City], c: Context, g: &mut G2d) {
 
 //Ports
 
-struct Port {
+pub struct Port {
     base: Hub,
     base_capacity: i32,
     condition: f32,
@@ -204,7 +221,7 @@ struct Port {
 }
 
 
-struct AirBase {
+pub struct AirBase {
     base: Hub,
     base_capacity: i32,
     condition: f32,
@@ -212,22 +229,22 @@ struct AirBase {
 //Roads
 
 
-while let Some(event) = window.next() {
-    window.draw_2d(&event, |c, g, _| {
-        clear([1.0; 4], g);  // Clear the screen with white color
-        draw_map(&cities, c, g);
-    });
-}
+// while let Some(event) = window.next() {
+    // window.draw_2d(&event, |c, g, _| {
+      //  clear([1.0; 4], g);  // Clear the screen with white color
+      //  draw_map(&cities, c, g);
+    //});
+//}
 //This code will draw nodes for each city and roads connecting every pair of cities. The size of the nodes and the thickness of the roads will vary based on the significance of the cities. Adjust the calculations for radius and thickness as needed to get the desired visual effect.
 
-enum RoadType {
+pub enum RoadType {
     Highway,
     MainRoad,
     SecondaryRoad,
     // ... other types ...
 }
 
-struct Road {
+pub struct Road {
     start_city: usize,  // Index to a City in a cities Vec
     end_city: usize,    // Index to a City in a cities Vec
     condition: f64,     // A value between 0.0 (destroyed) to 1.0 (perfect condition)
@@ -236,12 +253,18 @@ struct Road {
     // ... add other attributes as needed
 }
 
-let mut roads = vec![
-    Road { start_city: 0, end_city: 1, condition: .9, is_mined: false, road_type: Highway},
-    Road { start_city: 1, end_city: 2, condition: .8, is_mined: false, road_type: MainRoad},
-    Road { start_city: 0, end_city: 2, condition: 1.0, is_mined: true, road_type: SecondaryRoad},
-    // ... add more roads as needed
-];
+type Roads = Vec<Road>;
+
+impl Default for Roads {
+    fn default() -> Self {
+        vec![
+            Road { start_city: 0, end_city: 1, condition: 0.9, is_mined: false, road_type: RoadType::Highway },
+            Road { start_city: 1, end_city: 2, condition: 0.8, is_mined: false, road_type: RoadType::MainRoad },
+            Road { start_city: 0, end_city: 2, condition: 1.0, is_mined: true, road_type: RoadType::SecondaryRoad },
+            // ... add more roads as needed
+        ]
+    }
+}
 
 impl Road {
     fn capacity(&self) -> f64 {
@@ -297,20 +320,21 @@ fn mine_road(road: &mut Road) {
 // ... add other interaction functions as needed
 
 
-while let Some(event) = window.next() {
-    window.draw_2d(&event, |c, g, _| {
-        clear([1.0; 4], g);  // Clear the screen with white color
-        draw_map(&cities, &roads, c, g);
-    });
+
+//while let Some(event) = window.next() {
+    //window.draw_2d(&event, |c, g, _| {
+    //    clear([1.0; 4], g);  // Clear the screen with white color
+    //    draw_map(&cities, &roads, c, g);
+    //});
 
     // Example interactions:
-    if some_bombing_event {  // Replace with actual game event logic
-        bomb_road(&mut roads[0], 0.2);
-    }
-    if some_mining_event {  // Replace with actual game event logic
-        mine_road(&mut roads[1]);
-    }
-}
+    //if some_bombing_event {  // Replace with actual game event logic
+    //    bomb_road(&mut roads[0], 0.2);
+    //}
+    //if some_mining_event {  // Replace with actual game event logic
+    //    mine_road(&mut roads[1]);
+    //}
+//}
 //This setup allows you to have roads with different conditions and states, and you can interact with them based on game events. Adjust the logic and attributes as needed to fit your game's requirements.
 
 //while let Some(event) = window.next() {
