@@ -1,0 +1,112 @@
+Overview: Turn Based Game, in phases, two players. 1:U.S., 2:China. 
+Win Conditions:
+China: Inflict 10k U.S. Losses, or X many U.S. ships, and Congress will not authorize further US involvement. OR capture Taiwanese cities A, B, and C, and hold them for x days, OR USA incurs 150 diplomatic animosity.
+US: Impose a blockade on the Chinese coast for 14 days OR repel the Chinese forces entirely from Taiwan after 10 days have occurred, OR China incurs 100 diplomatic animosity.
+Draw: No victory for 30 days.
+
+Land: Units occupy 5km by 5km grid squares.With the exception of special forces, the typical unit is the brigade, ~3,000 personnel.
+
+	Tiles: Tiles each have a terrain type (each terrain has ground visibility multiplier, and optical concealment multiplier, infrared concealment multiplier (only in cities)), (each unit has offensive power multiplier, speed multiplier(one for leg and one for motorized)), and supply production (only general), and supply regen (hidden to the player), LEVEL OF MINING, cloud cover, .
+
+Food is located in strategic nodes (effectively functioning as automatic supplied points of general supply). Total starting food is 15,250,000 (pop taiwan * 1.2 kilos per person per day * 18 months)
+Ammo is also stored (LOOK INTO HOW MUCH RYAN) (at military bases. Ryan found map)
+Also stored special ammo
+ Personal estimate of antiship missile stockpile based on spending: 5500 Harpoon equivalents
+
+
+Base Terrain: templates of the above stats, that can be modified as needed.
+Mountain
+int ground = 
+int optical = 
+int infrared =   
+Hill
+Forest
+Jungle
+Plains
+Swamp
+Light Urban (2 units per)
+Dense Urban (3 units per)
+int ground = 
+int optical = 
+int infrared =
+Beach
+Cliffs (high difficulty)
+Stony/medium difficulty landing
+
+Island
+Abyssal(>2000 ft)
+Deep(200-2000 ft)
+Shallow(50-200 ft)
+Shoal (<50 ft)
+
+Terrain Modifiers(things that can change): (if opponent takes a territory, forts go to half strength, and fighting also decreases strength) (Make a UI thing to show terrain modifiers for a potential attack before you make it)
+Cloud cover
+Fortification(anti tank)
+Fortification(anti personnel)
+Visibility, Concealment etc. Fortification (once the opponent sees you, until you leave or the opponent no longer has any sight on your tile, you cannot hide). 
+Naval Mine (incurs DA)
+Weather (implement later. China could choose time of year)
+Rain
+Mud
+Storm
+Typhoon
+Snow (only in mountains)
+
+	Supply: 
+
+Phases: 
+	Competition: Both sides choose which units to station in the South Pacific, and where(broad areas, such as Phillipines, Taiwan, Okinawa, Shanghai, etc..China may position up to 50% of total forces in the area without diplomatic animosity. The US can only position a limited number of forces in each area without incurring DA. The US can preposition ammunition or even troops in Taiwan, but this costs much DA. Either side may cause a crisis after X turns of competition. The US may not move Taiwanese units until conflict.
+
+	Crisis: A major diplomatic crisis has occurred between China and the US. Both sides are now positioning forces more specifically in the area(down to 5k grid squares). If either side crosses the line of actual control, it incurs DA. The US may now position forces in Taiwan without incurring DA, but its forces take time to arrive, and China may escalate Crisis to Conflict at any time, for some DA. China must escalate after X turns. US may escalate to conflict, but will incur DA
+
+	Conflict: Shots have been fired. No matter who started it, both sides may now engage with regional units, and begin moving nonlocal units to the region. The 30-day draw timer starts now. The US player is now in control of Taiwanese assets.
+
+Conflict Phases (4 hours)
+Recon Phase: Satellites only operate every day (every 6 turns)
+Fires Phase: Missile, artillery, mortars, shore bombardment, plane bombing, etc.
+Movement Phase: Small arms, cav helicopters, 
+Close Combat Initiation:
+Combat Resolution:
+
+Supply Phase: Happens every 6 turns. 
+Give all units the amount of general supply equal to how much is in their tile.
+Establish/alter general(ammo, fuel, supply) supply routes, move special ammunition. Choose what to bring onto the island and which sea and air routes are you using. If route is compromised, lose that portion of your stuff. Each route has a max. 
+Once supply is on Taiwan, max throughput graphs are calculated. Units are grouped into several supply priority categories, full supply, high, medium, low, and shid. First supply is attempted to be given to all full supply units evenly, capped by max throughput. Then remaining units are given weighted supply (high = 1, med = 0.75, low = 0.5, shid=0.25). 
+When capturing a new route, the color automatically becomes green, which allows all types of supply. Special priority routes are blue, Fuel priority routes are black, general supply priority routes are yellow, ammo priority routes are orange. Each unit is a node, with connections (Leg BDE = 65, Mot. BDE 1 tile = 375) (Leg. = 60, Mot.2 tile = 370) (Leg = 55, Mot.3 tile = 365) (Leg. = 50, Mot.4 tile = 360) (Leg = 45, Mot.5 tile = 350). Priority queue the unit nodes based on player defined priority. Default options available for elite vs shid line units. Build a supply graph like from CS62. First check if enough supply for all of priority X units. Otherwise each gets only a portion of the supply. Then assign routes for all the needed supply. Then if routes are colored, reassign to try to max that supply type to that route without changing overall throughput (start with unit with the smallest total throughput) (the priority of the units takes precedence over the color of the supply line). Now supply lines that are contested lose a portion of the supply. All nodes that exit lose that proportion of their supply. Now all units receive a portion of  the initially allocated supply (a stored value) equal to the proportion of that supply that actually arrives at their node. 
+
+Moved via: Transferred via supply brigades/battalions, ships, planes, trains. This phase is where you transfer supply between units, for example a supply bn arrives and transfers supply to frontline BDEs.
+
+	
+Layers: 
+Function: Layers overlay on top of each other. 
+
+Supply/roads:
+	Shades regions you control/sort of control by level of your control. 
+Naval/Air:
+	
+Overview/Land:
+	Standard view
+	Radar 
+		Includes all your units and enemy units colored/detailed/shaded by last sighting. 
+		
+	Supply: 
+
+	In addition to units having supply demand, in supply phase, has units supply demanded. Local supply. Supply on island. Supply demanded. Replenish island stores.  
+
+Supply planes and supply nodes. Automatically resupply units along safe roads. 
+
+UI that says supply demanded on island. Where the supply is demanded (colors). Total supply stored (each node/hub). 
+
+Supply has 2 phases: 
+Instant supply (Hubs to units)
+Time lag phase (Ships and Planes, Hubs to Hubs)
+
+	Units: 
+
+Land: Units have strength(~personnel, number of hits that can be taken), morale loss multiplier (low moral = less damage inflicted, no morale = retreat or surrender), current morale, visibility(impacts damage incurred, and fog of war), ammunition, supply, Bridging Assets, Armored Bridging assets, transport weight, max weight transported, armor, speed, anti armor bonus, terrain bonuses, entrenchment speed, entrenchment ability, AA range, AA altitude, AA ammunition, AA damage,Jamming Ability, … and a variety of powers. a close offensive power, close off range(0-5km range), medium offensive power, medium off range(5-20km range), long offensive power, and long off range(>30km range), 
+
+
+
+Sea: Sea units also occupy 5km by 5km squares, but can stack indefinitely atop each other.
+
+	Ships have hull size(max HP), hull integrity(current HP as %), isSubmerged(damage exponentially increases when hit and not surfaced) damage control(How quickly HP is regened, logarithmically), fuel, max weight transported, supply, docking depth(shallow-medium-deep), gun ammunition, gun range, missile ammunition, missile range, missile defense, missile damage, gun damage, radar visibility, radar accuracy, radar range, sonar accuracy, sonar range, sonar visibility, torpedo range, torpedo damage, torpedo accuracy, AA altitude, AA range, AA ammunition, AA damage.
